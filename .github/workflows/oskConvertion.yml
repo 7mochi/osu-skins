@@ -12,10 +12,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
 
-      - name: Create artifacts folder
-        run: |
-          mkdir artifacts
-
       - name: Convert to osu! Skins (.osk)
         run: |
           for f in *; do
@@ -25,6 +21,10 @@ jobs:
               cd ..
             fi
           done
+
+      - name: Create artifacts folder
+        run: |
+          mkdir artifacts
       
       - name: Prepare artifacts folders
         run: |
