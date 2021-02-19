@@ -49,5 +49,4 @@ jobs:
         uses: actions/upload-artifact@master
         with:
           name: ${{ matrix.name }}
-          path: |
-            artifacts/${{ matrix.path }}.osk
+          path: artifacts/${{ matrix.path }}.osk
