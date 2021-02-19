@@ -3,16 +3,7 @@ name: Folders to osu! Skins (.osk)
 on: [push, pull_request]
 
 jobs:
-
-  Build:
-    strategy:
-      matrix:
-        include:
-          - { path: CeilingWaffle 20190911 idke insta, name: Celling Waffle idke insta }
-          - { ṕath: HoloCat 18-02-2021, name: HoloCat }
-          - { path: Remilia06559, name: Remilia }
-          - { path: Siae & EZbright, name: Siaezada }
-
+  build:
     runs-on: ubuntu-latest
 
     steps: 
@@ -39,8 +30,8 @@ jobs:
             cp -a "$z" artifacts
           done
       
-      - name: Upload artifacts (Skins) - All
+      - name: Upload artifacts (Skins)
         uses: actions/upload-artifact@master
         with:
-          name: all-flyingcat-osu-skins
+          name: flyingcat-osu-skins
           path: artifacts
