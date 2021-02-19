@@ -9,10 +9,9 @@ jobs:
       matrix:
         include:
           - { path: CeilingWaffle 20190911 idke insta, name: Celling Waffle idke insta }
-          - { path: HoloCat 18-02-2021 [ホロキャット], name: HoloCat }
           - { path: Remilia06559, name: Remilia }
           - { path: Siae & EZbright, name: Siaezada }
-          
+
     runs-on: ubuntu-latest
 
     steps: 
