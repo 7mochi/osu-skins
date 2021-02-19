@@ -44,9 +44,3 @@ jobs:
         with:
           name: all-flyingcat-osu-skins
           path: artifacts
-      
-      - name: Upload artifacts (Skins)
-        uses: actions/upload-artifact@master
-        with:
-          name: ${{ matrix.name }}
-          path: artifacts/${{ matrix.path }}.osk
