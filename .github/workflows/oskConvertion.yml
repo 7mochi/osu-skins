@@ -1,11 +1,10 @@
 name: Folders to osu! Skins (.osk)
 
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 
 jobs:
-  build:
+
+  Build:
     strategy:
       matrix:
         include:
@@ -13,6 +12,7 @@ jobs:
           - { path: HoloCat 18-02-2021 [ホロキャット], name: HoloCat }
           - { path: Remilia06559, name: Remilia }
           - { path: Siae & EZbright, name: Siaezada }
+          
     runs-on: ubuntu-latest
 
     steps: 
