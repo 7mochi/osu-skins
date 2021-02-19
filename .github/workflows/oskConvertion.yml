@@ -1,0 +1,39 @@
+name: Folders to osu! Skins (.osk)
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps: 
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Create artifacts folder
+        run: |
+          mkdir artifacts
+
+      - name: Convert to osu! Skins (.osk)
+        run: |
+          for f in *; do
+            if [ -d "$f" ]; then
+              cd "$f"
+              zip -r "../$f.osk" *
+              cd ..
+            fi
+          done
+      
+      - name: Prepare artifacts folders
+        run: |
+          for z in *.osk; do
+            cp -a "$z" artifacts
+          done
+      
+      - name: Upload artifacts (Skins)
+        uses: actions/upload-artifact@master
+        with:
+          name: flyingcat-osu-skins
+          path: artifacts
