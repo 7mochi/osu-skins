@@ -6,6 +6,13 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        include:
+          - { path: CeilingWaffle 20190911 idke insta, name: Celling Waffle idke insta }
+          - { path: HoloCat 18-02-2021 [ホロキャット], name: HoloCat }
+          - { path: Remilia06559, name: Remilia }
+          - { path: Siae & EZbright, name: Siaezada }
     runs-on: ubuntu-latest
 
     steps: 
@@ -32,8 +39,15 @@ jobs:
             cp -a "$z" artifacts
           done
       
-      - name: Upload artifacts (Skins)
+      - name: Upload artifacts (Skins) #1
         uses: actions/upload-artifact@master
         with:
-          name: flyingcat-osu-skins
+          name: all-flyingcat-osu-skins
           path: artifacts
+      
+      - name: Upload artifacts (Skins) #2
+        uses: actions/upload-artifact@master
+        with:
+          name: ${{ matrix.name }}
+          path: |
+            artifacts/${{ matrix.path }}.osk
