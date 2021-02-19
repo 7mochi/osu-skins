@@ -9,6 +9,7 @@ jobs:
       matrix:
         include:
           - { path: CeilingWaffle 20190911 idke insta, name: Celling Waffle idke insta }
+          - { ṕath: HoloCat 18-02-2021, name: HoloCat }
           - { path: Remilia06559, name: Remilia }
           - { path: Siae & EZbright, name: Siaezada }
 
@@ -38,13 +39,13 @@ jobs:
             cp -a "$z" artifacts
           done
       
-      - name: Upload artifacts (Skins) #1
+      - name: Upload artifacts (Skins) - All
         uses: actions/upload-artifact@master
         with:
           name: all-flyingcat-osu-skins
           path: artifacts
       
-      - name: Upload artifacts (Skins) #2
+      - name: Upload artifacts (Skins)
         uses: actions/upload-artifact@master
         with:
           name: ${{ matrix.name }}
