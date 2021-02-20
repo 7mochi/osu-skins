@@ -4,48 +4,31 @@ on: [push, pull_request]
 
 jobs:
 
-  Build:
-    strategy:
-      matrix:
-        include:
-          - { path: CeilingWaffle 20190911 idke insta, name: Celling Waffle idke insta }
-          - { path: HoloCat 18-02-2021, name: HoloCat }
-          - { path: Remilia06559, name: Remilia }
-          - { path: Siae & EZbright, name: Siaezada }
+    Build:
+        strategy:
+            matrix:
+                include:
+                    - { path: CeilingWaffle 20190911 idke insta, name: Celling Waffle idke insta }
+                    - { path: HoloCat 18-02-2021, name: HoloCat }
+                    - { path: Remilia06559, name: Remilia }
+                    - { path: Siae & EZbright, name: Siaezada }
 
-    runs-on: ubuntu-latest
+        runs-on: ubuntu-latest
 
-    steps: 
-      - name: Checkout repository
-        uses: actions/checkout@v1
+        steps: 
+            - name: Checkout repository
+                uses: actions/checkout@v1
 
-      - name: Convert to osu! Skins (.osk)
-        run: |
-          for f in *; do
-            if [ -d "$f" ]; then
-              cd "$f"
-              zip -r "../$f.osk" *
-              cd ..
-            fi
-          done
-      - name: Create artifacts folder
-        run: |
-          mkdir artifacts
-      
-      - name: Prepare artifacts folders
-        run: |
-          for z in *.osk; do
-            cp -a "$z" artifacts
-          done
-      
-      - name: Upload artifacts (Skins) - All
-        uses: actions/upload-artifact@master
-        with:
-          name: all-flyingcat-osu-skins
-          path: artifacts
-      
-      - name: Upload artifacts (Skins)
-        uses: actions/upload-artifact@master
-        with:
-          name: ${{ matrix.name }}
-          path: artifacts/${{ matrix.path }}.osk
+            - name: Convert to osu! Skins (.osk)
+                run: |
+                    if [ -d ${{ matrix.path }} ]; then
+                        cd ${{ matrix.path }}
+                        zip -r "../${{ matrix.path }}.osk" *
+                        cd ..
+                    fi
+
+            - name: Upload artifact (Skin)
+                uses: actions/upload-artifact@master
+                with:
+                    name: ${{ matrix.name }}
+                    path: ${{ matrix.path }}.osk
