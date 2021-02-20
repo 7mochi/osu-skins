@@ -21,31 +21,14 @@ jobs:
 
       - name: Convert to osu! Skins (.osk)
         run: |
-          for f in *; do
-            if [ -d "$f" ]; then
-              cd "$f"
-              zip -r "../$f.osk" *
-              cd ..
-            fi
-          done
-      - name: Create artifacts folder
-        run: |
-          mkdir artifacts
-      
-      - name: Prepare artifacts folders
-        run: |
-          for z in *.osk; do
-            cp -a "$z" artifacts
-          done
-      
-      - name: Upload artifacts (Skins) - All
+        if [ -d ${{ matrix.path }} ]; then
+            cd ${{ matrix.path }}
+            zip -r "../${{ matrix.path }}.osk" *
+            cd ..
+        fi
+
+      - name: Upload artifact (Skin)
         uses: actions/upload-artifact@master
         with:
-          name: all-flyingcat-osu-skins
-          path: artifacts
-      
-      - name: Upload artifacts (Skins)
-        uses: actions/upload-artifact@master
-        with:
-          name: ${{ matrix.name }}
-          path: artifacts/${{ matrix.path }}.osk
+            name: ${{ matrix.name }}
+            path: ${{ matrix.path }}.osk
