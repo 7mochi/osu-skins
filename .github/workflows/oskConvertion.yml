@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
 
-  Build:
+  build:
     strategy:
       matrix:
         include:
@@ -21,12 +21,11 @@ jobs:
 
       - name: Convert to osu! Skins (.osk)
         run: |
-        if [ -d ${{ matrix.path }} ]; then
-            cd ${{ matrix.path }}
-            zip -r "../${{ matrix.path }}.osk" *
-            cd ..
-        fi
-
+            if [ -d ${{ matrix.path }} ]; then
+                cd ${{ matrix.path }}
+                zip -r "../${{ matrix.path }}.osk" *
+                cd ..
+            fi
       - name: Upload artifact (Skin)
         uses: actions/upload-artifact@master
         with:
