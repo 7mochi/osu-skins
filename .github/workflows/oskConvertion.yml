@@ -21,8 +21,8 @@ jobs:
 
       - name: Convert to osu! Skins (.osk)
         run: |
-            if [ -d ${{ matrix.path }} ]; then
-                cd ${{ matrix.path }}
+            if [ -d "${{ matrix.path }}" ]; then
+                cd "${{ matrix.path }}"
                 zip -r "../${{ matrix.path }}.osk" *
                 cd ..
             fi
