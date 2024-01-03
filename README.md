@@ -1,3 +1,3 @@
 # osu-skins
  
-WIP (Artifacts Bump: 18/11/2022)
+WIP (Artifacts Bump: 02/01/2024)
